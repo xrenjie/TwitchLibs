@@ -12,6 +12,7 @@ const Game = ({
   sorted,
   messages,
   setSorted,
+  channel,
 }) => {
   const [gameMode, setGameMode] = useState("");
   const [gametitle, setGametitle] = useState("");
@@ -60,6 +61,22 @@ const Game = ({
                 );
               } else {
                 return words[count++];
+              }
+            } else if (word.match(/\[STREAMER\]/g)) {
+              if (!word.startsWith("[") && !word.endsWith("]")) {
+                return (
+                  word.slice(0, word.indexOf("[")) +
+                  channel +
+                  word.slice(word.lastIndexOf("]"), word.length)
+                );
+              } else if (!word.startsWith("[")) {
+                return word.slice(0, word.indexOf("[")) + channel;
+              } else if (!word.endsWith("]")) {
+                return (
+                  channel + word.slice(word.lastIndexOf("]") + 1, word.length)
+                );
+              } else {
+                return channel;
               }
             } else return word;
           })

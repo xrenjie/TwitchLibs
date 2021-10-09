@@ -64,6 +64,7 @@ function App() {
               sorted={sorted}
               messages={messages}
               setSorted={setSorted}
+              channel={channel}
             />
           </Route>
         </Switch>
