@@ -68,7 +68,7 @@ function App() {
           </Route>
         </Switch>
       </Router>
-      <div className="Footer">Made with salt and copium by anydrr</div>
+      <div className="Footer">Made with 🧂 by anydrr</div>
     </div>
   );
 }
