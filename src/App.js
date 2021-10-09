@@ -14,6 +14,7 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [counts, setCounts] = useState({});
   const [channel, setChannel] = useState("");
+  const [sorted, setSorted] = useState([]);
 
   const tmi = require("tmi.js");
   let client = new tmi.Client({
@@ -64,6 +65,9 @@ function App() {
               counts={counts}
               setMessages={setMessages}
               setCounts={setCounts}
+              sorted={sorted}
+              messages={messages}
+              setSorted={setSorted}
             />
           </Route>
         </Switch>

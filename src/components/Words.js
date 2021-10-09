@@ -6,16 +6,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-const Words = (props) => {
-  const [sorted, setSorted] = useState([]);
-
+const Words = ({ setSorted, sorted, messages, counts }) => {
   useEffect(() => {
     setSorted(
-      Object.keys(props.counts)
-        .map((k) => [k, props.counts[k]])
+      Object.keys(counts)
+        .map((k) => [k, counts[k]])
         .sort((a, b) => b[1] - a[1])
     );
-  }, [props.counts]);
+  }, [messages, counts]);
 
   return (
     <div>

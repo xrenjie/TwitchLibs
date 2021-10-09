@@ -4,7 +4,14 @@ import { useState, useEffect } from "react";
 import Words from "./Words";
 import { TextField } from "@mui/material";
 
-const Game = ({ counts, setMessages, setCounts }) => {
+const Game = ({
+  counts,
+  setMessages,
+  setCounts,
+  sorted,
+  messages,
+  setSorted,
+}) => {
   const translation = {
     "&noun-person-place-thing&": "Noun (person, place, thing)",
     "&noun-plural&": "Noun (plural)",
@@ -137,7 +144,7 @@ const Game = ({ counts, setMessages, setCounts }) => {
       setGameState(2);
     } else if (gameState === 2 && grammarCounter < grammar.length) {
       if (gameMode === "chat") {
-        setWords((old) => [...old, Object.keys(counts)[0]]);
+        setWords((old) => [...old, sorted.length > 0 ? sorted[0][0] : ""]);
       } else if (gameMode === "streamer") {
         setWords((old) => [...old, userInput]);
       }
@@ -146,7 +153,7 @@ const Game = ({ counts, setMessages, setCounts }) => {
     }
     if (words.length === grammar.length - 1) {
       if (gameMode === "chat") {
-        setWords((old) => [...old, Object.keys(counts)[0]]);
+        setWords((old) => [...old, sorted.length > 0 ? sorted[0][0] : ""]);
       } else if (gameMode === "streamer") {
         setWords((old) => [...old, userInput]);
       }
@@ -193,6 +200,13 @@ const Game = ({ counts, setMessages, setCounts }) => {
       >
         Back
       </Button>
+      <Button
+        onClick={() => {
+          console.log(sorted);
+        }}
+      >
+        test{" "}
+      </Button>
       {gameState === 0 ? (
         <div className="Menu">
           <Button variant="contained" onClick={() => handleStart("chat")}>
@@ -220,7 +234,14 @@ const Game = ({ counts, setMessages, setCounts }) => {
                 onInput={(e) => handleInput(e)}
               ></TextField>
             ) : null}
-            {gameState === 2 ? <Words counts={counts} /> : null}
+            {gameState === 2 ? (
+              <Words
+                sorted={sorted}
+                messages={messages}
+                setSorted={setSorted}
+                counts={counts}
+              />
+            ) : null}
           </div>
         </div>
       ) : null}
