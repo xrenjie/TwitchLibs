@@ -44,7 +44,7 @@ const Game = ({
         gamestring
           .split(" ")
           .map((word) => {
-            if (word.match(/&+[A-Za-z0-9_\-()]*&+/g)) {
+            if (word.match(/&[A-Za-z0-9_\-()']*&/g)) {
               if (!word.startsWith("&") && !word.endsWith("&")) {
                 return (
                   word.slice(0, word.indexOf("&")) +
@@ -75,35 +75,9 @@ const Game = ({
       gamestring
         .split(" ")
         .map((word) => {
-          if (word.match(/&+[A-Za-z0-9_\-()]*&+/g)) {
-            // if (!word.startsWith("&") && !word.endsWith("&")) {
-            //   return [
-            //     word.at(0),
-            //     word
-            //       .match(/&+[A-Za-z0-9_\-\(\)]*&+/g)[0]
-            //       .replaceAll("&", "")
-            //       .replaceAll("_", " "),
-            //     word.at(word.length - 1),
-            //   ];
-            // } else if (!word.startsWith("&")) {
-            //   return [
-            //     word.at(0),
-            //     word
-            //       .match(/&+[A-Za-z0-9_\-\(\)]*&+/g)[0]
-            //       .replaceAll("&", "")
-            //       .replaceAll("_", " "),
-            //   ];
-            // } else if (!word.endsWith("&")) {
-            //   return [
-            //     word
-            //       .match(/&+[A-Za-z0-9_\-\(\)]*&+/g)[0]
-            //       .replaceAll("&", "")
-            //       .replaceAll("_", " "),
-            //     word.at(word.length - 1),
-            //   ];
-            // } else {
+          if (word.match(/&[A-Za-z0-9_\-()']*&/g)) {
             return word
-              .match(/&+[A-Za-z0-9_\-()]*&+/g)[0]
+              .match(/&[A-Za-z0-9_\-()']*&/g)[0]
               .replaceAll("&", "")
               .replaceAll("_", " ");
             // }

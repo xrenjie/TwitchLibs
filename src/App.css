@@ -49,6 +49,10 @@
   gap: 20px;
 }
 
+.Table {
+  max-width: 90vw;
+}
+
 .Title {
   /* position: fixed; */
   /* top: 40px; */
@@ -59,9 +63,9 @@
 
 .Word {
   max-width: 60vw;
-  /* position: fixed; */
-  /* top: 100px; */
+
   font-size: 20px;
+  text-align: left;
 }
 
 .TitleName {
