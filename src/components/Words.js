@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -13,7 +13,7 @@ const Words = ({ setSorted, sorted, messages, counts }) => {
         .map((k) => [k, counts[k]])
         .sort((a, b) => b[1] - a[1])
     );
-  }, [messages, counts]);
+  }, [counts]);
 
   return (
     <div>

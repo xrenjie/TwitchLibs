@@ -200,13 +200,7 @@ const Game = ({
       >
         Back
       </Button>
-      <Button
-        onClick={() => {
-          console.log(sorted);
-        }}
-      >
-        test{" "}
-      </Button>
+
       {gameState === 0 ? (
         <div className="Menu">
           <Button variant="contained" onClick={() => handleStart("chat")}>
