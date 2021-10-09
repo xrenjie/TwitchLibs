@@ -1,7 +1,6 @@
 import "./App.css";
 import Game from "./components/Game";
 import React, { useState, useEffect } from "react";
-
 import {
   BrowserRouter as Router,
   Switch,
@@ -36,10 +35,7 @@ function App() {
   }, [messages]);
 
   const messageHandler = async (channel, tags, message) => {
-    const m = message
-      .toLowerCase()
-      .trim()
-      .replace(/[^\x20-\x7E]/g, "");
+    const m = message.trim().replace(/[^\x20-\x7E]/g, "");
     setMessages((messages) => [...messages, m]);
   };
 

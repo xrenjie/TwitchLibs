@@ -13,6 +13,22 @@ const Game = ({
   messages,
   setSorted,
 }) => {
+  const translation = {
+    "&noun-person-place-thing&": "Noun (person, place, thing)",
+    "&noun-plural&": "Noun (plural)",
+    "&noun&": "Noun",
+    "&noun-person&": "Noun (person)",
+    "&noun-place&": "Noun (place)",
+    "&noun-thing&": "Noun (thing)",
+    "&noun-proper&": "Proper noun (Name or Place)",
+    "&verb-past&": "Verb (past tense)",
+    "&verb-present&": "Verb (present tense)",
+    "&verb-future&": "Verb (future tense)",
+    "&verb-ing&": "Verb (-ing)",
+    "&adverb&": "Adverb",
+    "&adjective&": "Adjective",
+  };
+
   const [gameMode, setGameMode] = useState("");
   const [gametitle, setGametitle] = useState("");
   const [gamestring, setGamestring] = useState("");
@@ -44,23 +60,8 @@ const Game = ({
         gamestring
           .split(" ")
           .map((word) => {
-            if (word.match(/&+[A-Za-z0-9_\-()]*&+/g)) {
-              if (!word.startsWith("&") && !word.endsWith("&")) {
-                return (
-                  word.slice(0, word.indexOf("&")) +
-                  words[count++] +
-                  word.slice(word.lastIndexOf("&"), word.length)
-                );
-              } else if (!word.startsWith("&")) {
-                return word.slice(0, word.indexOf("&")) + words[count++];
-              } else if (!word.endsWith("&")) {
-                return (
-                  words[count++] +
-                  word.slice(word.lastIndexOf("&") + 1, word.length)
-                );
-              } else {
-                return words[count++];
-              }
+            if (word.startsWith("&") && word.endsWith("&")) {
+              return words[count++];
             } else return word;
           })
           .join(" ")
@@ -75,39 +76,11 @@ const Game = ({
       gamestring
         .split(" ")
         .map((word) => {
-          if (word.match(/&+[A-Za-z0-9_\-()]*&+/g)) {
-            // if (!word.startsWith("&") && !word.endsWith("&")) {
-            //   return [
-            //     word.at(0),
-            //     word
-            //       .match(/&+[A-Za-z0-9_\-\(\)]*&+/g)[0]
-            //       .replaceAll("&", "")
-            //       .replaceAll("_", " "),
-            //     word.at(word.length - 1),
-            //   ];
-            // } else if (!word.startsWith("&")) {
-            //   return [
-            //     word.at(0),
-            //     word
-            //       .match(/&+[A-Za-z0-9_\-\(\)]*&+/g)[0]
-            //       .replaceAll("&", "")
-            //       .replaceAll("_", " "),
-            //   ];
-            // } else if (!word.endsWith("&")) {
-            //   return [
-            //     word
-            //       .match(/&+[A-Za-z0-9_\-\(\)]*&+/g)[0]
-            //       .replaceAll("&", "")
-            //       .replaceAll("_", " "),
-            //     word.at(word.length - 1),
-            //   ];
-            // } else {
-            return word
-              .match(/&+[A-Za-z0-9_\-()]*&+/g)[0]
-              .replaceAll("&", "")
-              .replaceAll("_", " ");
-            // }
-          } else return " ";
+          if (word.startsWith("&") && word.endsWith("&"))
+            return word in translation
+              ? translation[word]
+              : word.replaceAll("&", "").replaceAll("_", " ");
+          else return " ";
         })
         .filter((word) => word !== " ")
     );
