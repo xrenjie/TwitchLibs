@@ -4,6 +4,7 @@
   height: 100%;
   position: fixed;
   color: white;
+  overflow-y: auto;
 }
 
 .UserInput {
@@ -89,4 +90,8 @@
   left: 10px;
   top: 10px;
   background-color: #2b2929;
+}
+
+.GameDiv {
+  margin-bottom: 50px;
 }

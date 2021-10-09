@@ -182,7 +182,7 @@ const Game = ({ counts, setMessages, setCounts }) => {
   };
 
   return (
-    <div>
+    <div className="GameDiv">
       <Button
         className="BackButton"
         variant="contained"
